@@ -1,0 +1,16 @@
+# Object files
+obj/*.o
+
+# Executables
+bin/my_shell
+
+# Temporary files
+*.swp
+*~# Compiled executables
+bin/my_shell
+
+# Object files
+obj/*.o
+
+# Other compiled binaries
+*.o

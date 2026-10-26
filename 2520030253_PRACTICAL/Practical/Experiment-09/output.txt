@@ -1,0 +1,2 @@
+Hello! Output redirected to a file.
+This is the dup2 experiment.

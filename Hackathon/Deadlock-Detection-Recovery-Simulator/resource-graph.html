@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Interactive deadlock detection and recovery simulator"><title>Resource Graph | DEADLOCK.LAB</title><link rel="stylesheet" href="css/style.css"></head><body>
+<header class="topbar"><div class="wrap nav">
+<a class="brand" href="index.html">DEADLOCK<span>.LAB</span></a>
+<button class="menu-btn" onclick="document.querySelector('.navlinks').classList.toggle('open')">MENU ☰</button>
+<nav class="navlinks">
+<a href="index.html">Home</a><a href="simulator.html">Simulator</a><a class="active" href="resource-graph.html">Resource Graph</a><a href="recovery.html">Recovery</a><a href="theory.html">Theory</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+</nav></div></header>
+<main>
+<section class="wrap pagehead"><div class="eyebrow">VISUAL EXPLAINER / 02</div><h1>Resource allocation graph</h1><p>A directed graph represents processes and resource types. Request edges point from a process to a resource; assignment edges point from a resource to a process.</p></section>
+<section class="wrap">
+<div class="panel"><div class="section-head"><div><h2>Example: circular wait</h2><p>Two processes each hold one resource and request the other.</p></div><button class="btn" id="toggle-graph-labels">Toggle edge labels</button></div>
+<div class="graph-stage"><svg viewBox="0 0 760 340" role="img" aria-label="Resource allocation graph with a cycle"><defs><marker id="arrowCyan" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#20d9ff"/></marker><marker id="arrowPurple" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#bd8cff"/></marker></defs>
+<path d="M190 92 L555 92" stroke="#20d9ff" stroke-width="2.5" marker-end="url(#arrowCyan)"/><path d="M570 125 L570 225" stroke="#bd8cff" stroke-width="2.5" marker-end="url(#arrowPurple)"/><path d="M540 260 L205 260" stroke="#20d9ff" stroke-width="2.5" marker-end="url(#arrowCyan)"/><path d="M175 225 L175 125" stroke="#bd8cff" stroke-width="2.5" marker-end="url(#arrowPurple)"/>
+<rect x="110" y="60" width="110" height="65" rx="10" fill="#071b28" stroke="#20d9ff" stroke-width="2"/><text x="165" y="88" fill="#20d9ff" font-size="18" text-anchor="middle" font-family="monospace">P1</text><text x="165" y="108" fill="#9aafc4" font-size="11" text-anchor="middle">process</text>
+<rect x="515" y="60" width="110" height="65" rx="10" fill="#180f28" stroke="#bd8cff" stroke-width="2"/><text x="570" y="88" fill="#bd8cff" font-size="18" text-anchor="middle" font-family="monospace">R2</text><text x="570" y="108" fill="#9aafc4" font-size="11" text-anchor="middle">resource</text>
+<rect x="515" y="225" width="110" height="65" rx="10" fill="#071b28" stroke="#20d9ff" stroke-width="2"/><text x="570" y="253" fill="#20d9ff" font-size="18" text-anchor="middle" font-family="monospace">P2</text><text x="570" y="273" fill="#9aafc4" font-size="11" text-anchor="middle">process</text>
+<rect x="110" y="225" width="110" height="65" rx="10" fill="#180f28" stroke="#bd8cff" stroke-width="2"/><text x="165" y="253" fill="#bd8cff" font-size="18" text-anchor="middle" font-family="monospace">R1</text><text x="165" y="273" fill="#9aafc4" font-size="11" text-anchor="middle">resource</text>
+<g id="edge-labels" fill="#ffe85c" font-family="monospace" font-size="12"><text x="365" y="80" text-anchor="middle">REQUEST</text><text x="585" y="180">ASSIGNED</text><text x="365" y="249" text-anchor="middle">REQUEST</text><text x="190" y="180">ASSIGNED</text></g>
+<text x="370" y="166" text-anchor="middle" fill="#ff617d" font-family="monospace" font-size="16" font-weight="bold">CYCLE DETECTED</text><text x="370" y="188" text-anchor="middle" fill="#9aafc4" font-size="12">P1 → R2 → P2 → R1 → P1</text>
+</svg></div>
+<div class="legend" style="margin-top:15px"><span><i style="background:var(--cyan)"></i>Request edge: process → resource</span><span><i style="background:var(--purple)"></i>Assignment edge: resource → process</span></div>
+</div>
+<div class="two"><div class="card"><h3>What does a cycle mean?</h3><p>With one instance of each resource type, a cycle in the resource-allocation graph is sufficient to indicate deadlock. With multiple instances, a cycle is necessary but not always sufficient.</p></div><div class="card"><h3>How to read it</h3><p>P1 requests R2, but R2 is assigned to P2. P2 requests R1, but R1 is assigned to P1. The circular dependency prevents either process from proceeding.</p></div></div>
+</section>
+</main><footer class="footer"><div class="wrap"><span>DEADLOCK.LAB · Interactive deadlock learning simulator</span><span>Built with HTML, CSS & JavaScript</span></div></footer><script src="js/app.js"></script></body></html>

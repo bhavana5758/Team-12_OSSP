@@ -1,0 +1,20 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Interactive deadlock detection and recovery simulator"><title>Simulator | DEADLOCK.LAB</title><link rel="stylesheet" href="css/style.css"></head><body>
+<header class="topbar"><div class="wrap nav">
+<a class="brand" href="index.html">DEADLOCK<span>.LAB</span></a>
+<button class="menu-btn" onclick="document.querySelector('.navlinks').classList.toggle('open')">MENU ☰</button>
+<nav class="navlinks">
+<a href="index.html">Home</a><a class="active" href="simulator.html">Simulator</a><a href="resource-graph.html">Resource Graph</a><a href="recovery.html">Recovery</a><a href="theory.html">Theory</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+</nav></div></header>
+<main>
+<section class="wrap pagehead"><div class="eyebrow">INTERACTIVE WORKBENCH / 01</div><h1>Deadlock simulator</h1><p>Configure the resource state, run detection, then test a recovery action. This tool models resource instances, not actual operating-system processes.</p></section>
+<section class="wrap">
+<div class="panel"><div class="section-head"><div><h2>System configuration</h2><p>Choose matrix dimensions and enter non-negative integer values.</p></div><div class="actions" style="margin-top:0"><button class="btn" id="load-example">Load example</button><button class="btn" id="reset-sim">Reset</button></div></div>
+<div class="formgrid"><div class="field"><label for="p-count">PROCESSES</label><select id="p-count"><option>2</option><option>3</option><option selected>4</option><option>5</option></select></div><div class="field"><label for="r-count">RESOURCE TYPES</label><select id="r-count"><option>2</option><option selected>3</option><option>4</option></select></div><div class="field"><label>AVAILABLE VECTOR</label><div id="available-fields" style="display:flex;gap:5px"></div></div><div class="field"><label>ALGORITHM</label><input value="Resource detection" disabled></div></div>
+<div class="two"><div><h3>Allocation matrix</h3><p class="small">Instances of each resource currently held by each process.</p><div id="allocation-matrix" class="matrix-wrap"></div></div><div><h3>Outstanding request matrix</h3><p class="small">Additional instances each process is currently waiting for.</p><div id="request-matrix" class="matrix-wrap"></div></div></div>
+<div class="actions"><button class="btn primary" id="run-detection">▶ Run detection</button><button class="btn danger" id="recover-process">Terminate selected deadlocked process</button></div>
+<div id="sim-result" class="result"><h3>Ready to analyze</h3><p class="muted">Load the example or enter a resource state, then select Run detection.</p></div>
+<div class="field" style="max-width:320px;margin-top:14px"><label for="recovery-target">RECOVERY TARGET</label><select id="recovery-target"><option value="">Run detection first</option></select></div>
+</div>
+<div class="notice">Model assumptions: the available vector is supplied by the user and must be consistent with the allocation data. The detector uses the classic Work/Finish method. A process with no allocation can be marked finished initially; remaining unfinished processes are reported as deadlocked candidates under the model.</div>
+</section>
+</main><footer class="footer"><div class="wrap"><span>DEADLOCK.LAB · Interactive deadlock learning simulator</span><span>Built with HTML, CSS & JavaScript</span></div></footer><script src="js/app.js"></script></body></html>
